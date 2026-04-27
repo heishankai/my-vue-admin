@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // 引入这两个插件
 import AutoImport from 'unplugin-auto-import/vite'
@@ -55,6 +56,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       vue(),
+      vueJsx(),
       // 自动导入 Vue API (ref, computed, onMounted 等)
       AutoImport({
         imports: ['vue', 'vue-router', 'pinia'],
@@ -103,6 +105,15 @@ export default defineConfig(({ mode }) => {
               }
             }
           },
+        },
+      },
+    },
+    // 👇 新增：SCSS 全局变量配置
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // 自动导入变量文件，末尾记得加分号
+          additionalData: `@use "@/styles/variables.scss" as *;`,
         },
       },
     },
