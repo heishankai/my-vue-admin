@@ -6,7 +6,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
   <div>
     <h1>手动搭建的 Vue 3 + TS 项目!</h1>
     <HelloWorld msg="恭喜你，搭建成功！" />
-    <el-button type="primary">主要按钮</el-button>
+    <el-button type="primary">主要按钮1</el-button>
   </div>
 </template>
 
