@@ -7,6 +7,9 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue').EffectScope
+  const ElMessage: typeof import('element-plus/es').ElMessage
+  const ElMessageBox: typeof import('element-plus/es').ElMessageBox
+  const ElNotification: typeof import('element-plus/es').ElNotification
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
@@ -67,16 +70,68 @@ declare global {
   const toValue: typeof import('vue').toValue
   const triggerRef: typeof import('vue').triggerRef
   const unref: typeof import('vue').unref
+  const useAsyncOrder: typeof import('vue-hooks-plus').useAsyncOrder
   const useAttrs: typeof import('vue').useAttrs
+  const useBoolean: typeof import('vue-hooks-plus').useBoolean
+  const useControlledState: typeof import('vue-hooks-plus').useControlledState
+  const useCookieState: typeof import('vue-hooks-plus').useCookieState
+  const useCounter: typeof import('vue-hooks-plus').useCounter
   const useCssModule: typeof import('vue').useCssModule
   const useCssVars: typeof import('vue').useCssVars
+  const useDarkMode: typeof import('vue-hooks-plus').useDarkMode
+  const useDebounce: typeof import('vue-hooks-plus').useDebounce
+  const useDebounceFn: typeof import('vue-hooks-plus').useDebounceFn
+  const useDrag: typeof import('vue-hooks-plus').useDrag
+  const useDrop: typeof import('vue-hooks-plus').useDrop
+  const useElementBounding: typeof import('vue-hooks-plus').useElementBounding
+  const useEventEmitter: typeof import('vue-hooks-plus').useEventEmitter
+  const useEventListener: typeof import('vue-hooks-plus').useEventListener
+  const useExternal: typeof import('vue-hooks-plus').useExternal
+  const useFavicon: typeof import('vue-hooks-plus').useFavicon
+  const useFetchs: typeof import('vue-hooks-plus').useFetchs
+  const useFocusWithin: typeof import('vue-hooks-plus').useFocusWithin
+  const useFormatResult: typeof import('vue-hooks-plus').useFormatResult
+  const useFullscreen: typeof import('vue-hooks-plus').useFullscreen
+  const useHover: typeof import('vue-hooks-plus').useHover
   const useId: typeof import('vue').useId
+  const useInViewport: typeof import('vue-hooks-plus').useInViewport
+  const useInfiniteScroll: typeof import('vue-hooks-plus').useInfiniteScroll
+  const useInterval: typeof import('vue-hooks-plus').useInterval
+  const useKeyPress: typeof import('vue-hooks-plus').useKeyPress
   const useLink: typeof import('vue-router').useLink
+  const useLocalStorageState: typeof import('vue-hooks-plus').useLocalStorageState
+  const useLockFn: typeof import('vue-hooks-plus').useLockFn
+  const useLongPress: typeof import('vue-hooks-plus').useLongPress
+  const useMap: typeof import('vue-hooks-plus').useMap
+  const useMedia: typeof import('vue-hooks-plus').useMedia
   const useModel: typeof import('vue').useModel
+  const useMouse: typeof import('vue-hooks-plus').useMouse
+  const useMutationObserver: typeof import('vue-hooks-plus').useMutationObserver
+  const useNetwork: typeof import('vue-hooks-plus').useNetwork
+  const usePreview: typeof import('vue-hooks-plus').usePreview
+  const usePrevious: typeof import('vue-hooks-plus').usePrevious
+  const useRequest: typeof import('vue-hooks-plus').useRequest
+  const useResizeObserver: typeof import('vue-hooks-plus').useResizeObserver
   const useRoute: typeof import('vue-router').useRoute
   const useRouter: typeof import('vue-router').useRouter
+  const useScroll: typeof import('vue-hooks-plus').useScroll
+  const useSessionStorageState: typeof import('vue-hooks-plus').useSessionStorageState
+  const useSet: typeof import('vue-hooks-plus').useSet
+  const useSetState: typeof import('vue-hooks-plus').useSetState
+  const useSize: typeof import('vue-hooks-plus').useSize
   const useSlots: typeof import('vue').useSlots
   const useTemplateRef: typeof import('vue').useTemplateRef
+  const useThrottle: typeof import('vue-hooks-plus').useThrottle
+  const useThrottleFn: typeof import('vue-hooks-plus').useThrottleFn
+  const useTimeout: typeof import('vue-hooks-plus').useTimeout
+  const useTitle: typeof import('vue-hooks-plus').useTitle
+  const useToggle: typeof import('vue-hooks-plus').useToggle
+  const useTrackedEffect: typeof import('vue-hooks-plus').useTrackedEffect
+  const useUpdate: typeof import('vue-hooks-plus').useUpdate
+  const useVirtualList: typeof import('vue-hooks-plus').useVirtualList
+  const useWebSocket: typeof import('vue-hooks-plus').useWebSocket
+  const useWhyDidYouUpdate: typeof import('vue-hooks-plus').useWhyDidYouUpdate
+  const useWinResize: typeof import('vue-hooks-plus').useWinResize
   const watch: typeof import('vue').watch
   const watchEffect: typeof import('vue').watchEffect
   const watchPostEffect: typeof import('vue').watchPostEffect

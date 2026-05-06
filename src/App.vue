@@ -1,27 +1,14 @@
 <script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'
-import AppButton from '@/components/AppButton.tsx'
-const a = ref(1)
-console.log(a.value)
+import { ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+
+defineOptions({ name: 'App' })
 </script>
 
 <template>
-  <div>
-    <h1>手动搭建的 Vue 3 + TS 项目!</h1>
-    <HelloWorld msg="恭喜你，搭建成功！" />
-    <el-button type="primary">主要按钮1</el-button>
-    <AppButton label="Click me" />
-  </div>
+  <el-config-provider :locale="zhCn">
+    <router-view />
+  </el-config-provider>
 </template>
 
-<style scoped lang="scss">
-h1 {
-  color: #42b983;
-  cursor: pointer;
-
-  &:hover {
-    color: $primary-color;
-    font-size: $font-size-base;
-  }
-}
-</style>
+<style></style>

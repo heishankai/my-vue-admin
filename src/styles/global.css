@@ -1,0 +1,32 @@
+@import 'tailwindcss';
+
+:root {
+  --el-color-primary-rgb: 99, 102, 241;
+  --el-color-primary: #6366f1;
+  --el-color-primary-light-3: #818cf8;
+  --el-color-primary-light-5: #a5b4fc;
+  --el-color-primary-light-7: #c7d2fe;
+  --el-color-primary-light-8: #e0e7ff;
+  --el-color-primary-light-9: #eef2ff;
+  --el-color-primary-dark-2: #4f46e5;
+}
+/* ================= base（重置层）================= */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #app {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+/* #nprogress .bar {
+  background: #fff !important;
+} */

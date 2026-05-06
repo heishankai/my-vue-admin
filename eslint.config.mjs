@@ -19,6 +19,7 @@ export default tseslint.config(
   {
     ignores: [
       'dist/**',
+      'fitment-admin/**',
       'node_modules/**',
       'coverage/**',
       'src/components.d.ts',
@@ -39,6 +40,12 @@ export default tseslint.config(
   {
     files: ['**/*.vue'],
     languageOptions: {
+      // Re-declare globals here: some ESLint IDE integrations only apply flat-config
+      // languageOptions from the block that targets *.vue, so auto-imports were missing.
+      globals: {
+        ...globals.browser,
+        ...autoImportGlobals,
+      },
       parserOptions: {
         parser: tseslint.parser,
       },
@@ -52,6 +59,19 @@ export default tseslint.config(
     files: ['vite.config.ts', 'commitlint.config.mjs', 'eslint.config.mjs'],
     languageOptions: {
       globals: globals.node,
+    },
+  },
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+      'vue/multi-word-component-names': 'off',
     },
   },
   eslintConfigPrettier,
