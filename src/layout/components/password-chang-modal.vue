@@ -67,18 +67,15 @@
   </el-dialog>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import { ElMessage } from 'element-plus'
 import type { FormInstance } from 'element-plus'
 import { useRequest } from 'vue-hooks-plus'
 // service
 import { updatePasswordService } from '@/service'
 
-export default {
-  name: 'PasswordChangModal',
-}
-</script>
+defineOptions({ name: 'PasswordChangModal' })
 
-<script lang="ts" setup>
 const changePasswordFormRef = ref<FormInstance>()
 const [visible, { setTrue, setFalse }] = useBoolean(false)
 const changePasswordForm = reactive<any>({})
