@@ -46,7 +46,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { FormInstance } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 import { useCookieState } from 'vue-hooks-plus'
@@ -55,12 +55,8 @@ import { useRouter } from 'vue-router'
 import { loginService } from '../service'
 import { useUserInfoStore } from '@/stores'
 
-export default {
-  name: 'LoginForm',
-}
-</script>
+defineOptions({ name: 'LoginForm' })
 
-<script setup lang="ts">
 const router = useRouter()
 const userInfoStore = useUserInfoStore()
 

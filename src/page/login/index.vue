@@ -19,7 +19,7 @@
   </el-row>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import LoginForm from './components/login-form.vue'
 
 defineOptions({ name: 'LoginPage' })
@@ -30,8 +30,6 @@ defineOptions({ name: 'LoginPage' })
  * md ： ≥992px 左边是12 右边是12
  */
 </script>
-
-<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .login-page {
