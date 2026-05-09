@@ -21,12 +21,8 @@
 
 <script lang="ts">
 import LoginForm from './components/login-form.vue'
-export default {
-  name: 'LoginPage',
-  components: {
-    LoginForm,
-  },
-}
+
+defineOptions({ name: 'LoginPage' })
 
 /**
  * @description 响应式布局
