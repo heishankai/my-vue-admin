@@ -22,7 +22,7 @@ const router = createRouter({
  */
 router.beforeEach(async (to: any, _from: any, next: any) => {
   const title = to.meta?.title
-  window.document.title = title || 'GB'
+  window.document.title = title || 'hello'
 
   showFullScreenNprogress()
 
