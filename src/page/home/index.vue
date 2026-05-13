@@ -17,7 +17,7 @@ const handleSubmit = async () => {
 
 <template>
   <div class="w-full">
-    <el-button type="primary" @click="handleOpenFormDrawer">主要按钮1</el-button>
+    <el-button type="primary" @click="handleOpenFormDrawer">主要按钮</el-button>
     <form-drawer ref="formDrawerRef" @submit="handleSubmit">
       <div v-for="item in 1000" :key="item">
         {{ item }}

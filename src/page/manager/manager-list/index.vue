@@ -19,7 +19,7 @@
         </el-col>
         <el-col :span="8">
           <el-form-item label="所属角色" prop="region">
-            <el-select v-model="searchForm.region" placeholder="Activity zone" clearable>
+            <el-select v-model="searchForm.region" placeholder="请选择所属角色" clearable>
               <el-option label="Zone one" value="shanghai" />
               <el-option label="Zone two" value="beijing" />
             </el-select>
@@ -31,7 +31,7 @@
               v-model="searchForm.date"
               style="width: 100%"
               type="date"
-              placeholder="Pick a date"
+              placeholder="请选择创建时间"
               clearable
             />
           </el-form-item>
@@ -73,8 +73,27 @@
       </el-table-column>
       <el-table-column prop="Operations" label="操作" width="180" align="center" fixed="right">
         <template #default="scope">
-          <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button type="text" icon="Edit" size="small" @click="handleEdit(scope.row)"
+            >编辑</el-button
+          >
+          <el-popconfirm :ref="(el) => setPopconfirmRef(scope.row.id, el)" title="确定删除吗？">
+            <template #reference>
+              <el-button type="text" icon="Delete" size="small">删除</el-button>
+            </template>
+            <template #actions="{ cancel }">
+              <el-button text size="small" :disabled="deletingId === scope.row.id" @click="cancel">
+                取消
+              </el-button>
+              <el-button
+                type="primary"
+                size="small"
+                :loading="deletingId === scope.row.id"
+                @click="handleDeleteConfirm(scope.row)"
+              >
+                确定
+              </el-button>
+            </template>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
@@ -97,7 +116,7 @@
 defineOptions({ name: 'ManagerListPage' })
 import type { FormInstance } from 'element-plus'
 // service
-import { getManagerListService } from './service'
+import { getManagerListService, deleteManagerService } from './service'
 
 // 分页大小
 const pageSize = ref<number>(10)
@@ -124,6 +143,21 @@ const {
 } = useRequest(getManagerListService, {
   manual: true,
 })
+
+/** 正在删除的管理员 id，用于 Popconfirm 自定义「确定」按钮 loading */
+const deletingId = ref<number | null>(null)
+
+/** 每行 Popconfirm 的 hide，请求成功后再关气泡（内置 @confirm 会先关再请求，无法给确定加 loading） */
+const popconfirmHideMap = new Map<number, () => void>()
+
+const setPopconfirmRef = (rowId: number, el: unknown) => {
+  if (!el) {
+    popconfirmHideMap.delete(rowId)
+    return
+  }
+  const inst = el as { hide?: () => void }
+  popconfirmHideMap.set(rowId, () => inst.hide?.())
+}
 
 /**
  * 状态改变
@@ -172,11 +206,20 @@ const handleEdit = (row: any) => {
 }
 
 /**
- * 删除
+ * 删除（自定义 actions：确定上 loading，成功后再关气泡）
  * @param row 行数据
  */
-const handleDelete = (row: any) => {
-  console.log(row, 'row')
+const handleDeleteConfirm = async (row: { id: number }) => {
+  const id = row.id
+  if (deletingId.value !== null) return
+  deletingId.value = id
+  try {
+    await deleteManagerService(id)
+    popconfirmHideMap.get(id)?.()
+    refresh()
+  } finally {
+    deletingId.value = null
+  }
 }
 
 /**

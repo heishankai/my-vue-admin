@@ -19,3 +19,12 @@ export const getManagerListService = (params: ManagerListParams) => {
 export const addManagerService = (data: AddManagerParams) => {
   return request.post('/api/manager', data)
 }
+
+/**
+ * 删除管理员
+ * @param id 管理员ID
+ * @returns 删除管理员数据
+ */
+export const deleteManagerService = (id: number) => {
+  return request.post(`/api/manager/${id}/delete`)
+}
