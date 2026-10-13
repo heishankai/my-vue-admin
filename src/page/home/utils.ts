@@ -27,6 +27,66 @@ export interface OrderChartData {
 /**
  * 根据接口数据生成 ECharts 配置（订单概览柱状图）
  */
+/** 饼图单项 */
+export interface PieChartItem {
+  label: string
+  value: number
+}
+
+/** 饼图接口数据形状 */
+export interface PieChartData {
+  goods: PieChartItem[]
+  order: PieChartItem[]
+}
+
+/**
+ * 饼图 统计维度列表
+ */
+export const PIE_CHART_SCOPE_LIST: { label: string; value: keyof PieChartData }[] = [
+  { label: '商品统计', value: 'goods' },
+  { label: '订单统计', value: 'order' },
+]
+
+const PIE_CHART_COLORS = ['#6366f1', '#818cf8', '#a5b4fc', '#4f46e5', '#c7d2fe', '#e0e7ff']
+
+/**
+ * 根据接口数据生成 ECharts 配置（饼图）
+ */
+export const buildPieChartOption = (data: PieChartItem[]): EChartsOption => {
+  return {
+    color: PIE_CHART_COLORS,
+    tooltip: {
+      trigger: 'item',
+      formatter: '{b}: {c} ({d}%)',
+    },
+    legend: {
+      orient: 'vertical',
+      left: 'left',
+      top: 'center',
+    },
+    series: [
+      {
+        type: 'pie',
+        radius: ['42%', '68%'],
+        center: ['62%', '50%'],
+        avoidLabelOverlap: true,
+        itemStyle: {
+          borderRadius: 6,
+          borderColor: '#fff',
+          borderWidth: 2,
+        },
+        label: {
+          formatter: '{b}\n{d}%',
+        },
+        data: (data ?? []).map((item) => ({
+          name: item.label,
+          value: item.value,
+        })),
+      },
+    ],
+  }
+}
+
 export const buildOrderChartOption = (data: OrderChartData): EChartsOption => {
   return {
     grid: [{ left: 0, right: 0, top: 20, bottom: 0, containLabel: true }],

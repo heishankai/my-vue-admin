@@ -3,6 +3,7 @@ defineOptions({ name: 'HomePage' })
 // components
 import { FormDrawer } from '@/components/index'
 import OrderChart from './components/order-chart.vue'
+import PieChart from './components/pie-chart.vue'
 
 const formDrawerRef = ref<InstanceType<typeof FormDrawer>>()
 
@@ -24,6 +25,9 @@ const handleSubmit = async () => {
       </div>
     </form-drawer>
     <el-row :gutter="20">
+      <el-col v-permission="['getStatistics2,GET']" :span="12">
+        <pie-chart />
+      </el-col>
       <el-col v-permission="['getStatistics3,GET', 'updateRule,POST']" :span="12">
         <order-chart />
       </el-col>
